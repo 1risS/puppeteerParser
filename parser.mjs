@@ -20,14 +20,12 @@ import puppeteer from "puppeteer";
         const h = await page.evaluate(el => el.innerText, elem);
         const classNameHd = await elem.getProperty('className');
         const className = await classNameHd.jsonValue();
-        const split = className.split(' ')
-        const translationKeys = split.filter(className => className !== 'englishDefault')[0]
-        console.log(translationKeys)
-
-        keys[translationKeys] = h
-
-        console.log(keys)
+        const split = className.split(' ');
+        const translationKeys = split.filter(className => className !== 'englishDefault')[0];
+        keys[translationKeys] = h;
     }
+
+    console.log(keys);
 
 
     
