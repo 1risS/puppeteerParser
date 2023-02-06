@@ -1,12 +1,7 @@
 import puppeteer from "puppeteer";
 import api from 'api';
 
-const sdk = require('api')('@lokalise-devhub/v1.0#4jrla2jld4mbb1b');
-
-sdk.auth('e194d92821be3306227f2c7d593a12961e5215cf');
-sdk.uploadAFile({project_id: '3735380963dd813d1995c3.11101902'})
-.then(({ data }) => console.log(data))
-.catch(err => console.error(err));
+const sdk = api('@lokalise-devhub/v1.0#4jrla2jld4mbb1b');
 
 (async () => {
     const browser = await puppeteer.launch({headless: false}); 
@@ -39,14 +34,21 @@ sdk.uploadAFile({project_id: '3735380963dd813d1995c3.11101902'})
 
     console.log(json);
 
-    const buff = new Buffer(JSON.stringify(json));
+    const buff = Buffer.from(json);
     const base64data = buff.toString('base64');
 
     const objJsonForUpload = {
-        data: {base64data},
+        data: base64data,
         filename: "en.json",
         lang_iso: "en",
     }
+
+    console.log(objJsonForUpload);
+
+    sdk.auth('e194d92821be3306227f2c7d593a12961e5215cf');
+    sdk.uploadAFile(objJsonForUpload, {project_id: '3608265663e13c8d4c0c40.25203987'})
+        .then(({ data }) => console.log(data))
+        .catch(err => console.error(err));
 })
 ()
 
