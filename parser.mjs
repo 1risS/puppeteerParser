@@ -1,4 +1,12 @@
 import puppeteer from "puppeteer";
+import api from 'api';
+
+const sdk = require('api')('@lokalise-devhub/v1.0#4jrla2jld4mbb1b');
+
+sdk.auth('e194d92821be3306227f2c7d593a12961e5215cf');
+sdk.uploadAFile({project_id: '3735380963dd813d1995c3.11101902'})
+.then(({ data }) => console.log(data))
+.catch(err => console.error(err));
 
 (async () => {
     const browser = await puppeteer.launch({headless: false}); 
@@ -25,10 +33,21 @@ import puppeteer from "puppeteer";
         keys[translationKeys] = h;
     }
 
-    console.log(keys);
-
-
+    // console.log(keys);
     
-}) ()
+    var json = JSON.stringify(keys);
+
+    console.log(json);
+
+    const buff = new Buffer(JSON.stringify(json));
+    const base64data = buff.toString('base64');
+
+    const objJsonForUpload = {
+        data: {base64data},
+        filename: "en.json",
+        lang_iso: "en",
+    }
+})
+()
 
 
