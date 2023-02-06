@@ -45,8 +45,12 @@ const sdk = api('@lokalise-devhub/v1.0#4jrla2jld4mbb1b');
 
     console.log(objJsonForUpload);
 
-    sdk.auth('e194d92821be3306227f2c7d593a12961e5215cf');
-    sdk.uploadAFile(objJsonForUpload, {project_id: '3608265663e13c8d4c0c40.25203987'})
+    sdk.auth('f18e176392ec254590ba86bf84888c55d334faa0');
+    sdk.uploadAFile(objJsonForUpload, {project_id: '1506245863dd675f528a85.86927298'})
+        .then(({ data }) => console.log(data))
+        .catch(err => console.error(err));
+
+    sdk.downloadFiles({project_id: '1506245863dd675f528a85.86927298', branch: 'master'})
         .then(({ data }) => console.log(data))
         .catch(err => console.error(err));
 })
