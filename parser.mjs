@@ -49,10 +49,6 @@ const sdk = api('@lokalise-devhub/v1.0#4jrla2jld4mbb1b');
     sdk.uploadAFile(objJsonForUpload, {project_id: '1506245863dd675f528a85.86927298'})
         .then(({ data }) => console.log(data))
         .catch(err => console.error(err));
-
-    sdk.downloadFiles({project_id: '1506245863dd675f528a85.86927298', branch: 'master'})
-        .then(({ data }) => console.log(data))
-        .catch(err => console.error(err));
 })
 ()
 
